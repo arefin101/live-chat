@@ -20,17 +20,13 @@ use Illuminate\Contracts\Session\Session;
 */
 
 Route::get('/', function () {
-    $chatt=chat::where('user_id', '=', 1)->get();
 
-    return view('index', compact(['chatt']));
+    return view('index');
+
 });
 
 Route::post('send-message', function(Request $request){
    
-    // $chat = new Chat;
-    // $chat->user_id = 1;
-    // $chat->message =$request->message;
-    // $chat->save();
     
     event(
         new Message(
@@ -41,6 +37,3 @@ Route::post('send-message', function(Request $request){
 
 });
 
-Route::get('login','LoginController@login');
-Route::post('login','LoginController@loginPost');
-Route::get('logins','LoginController@getCookie')->name('goo');
